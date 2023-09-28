@@ -9,7 +9,8 @@ DOMAIN="$1"
 KEY="/etc/letsencrypt/live/$DOMAIN/privkey.pem"
 CERT="/etc/letsencrypt/live/$DOMAIN/fullchain.pem"
 
-sudo certbot certonly --standalone -d $DOMAIN -d www.$DOMAIN
+systemctl stop apache2
+certbot certonly --standalone -d $DOMAIN -d www.$DOMAIN
 
 # Check for the certificate and private key
 if [[ -f "$CERT" && -f "$KEY" ]]; then
