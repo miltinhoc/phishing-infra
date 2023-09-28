@@ -23,6 +23,8 @@ if [[ -f "$CERT" && -f "$KEY" ]]; then
     sed -i "s|gophish_admin.key|$KEY|g" config.json
     sed -i "s|example\.crt|$CERT|g" config.json
     sed -i "s|example\.key|$KEY|g" config.json
+    
+    systemctl start apache2
 
     ./gophish
 else
